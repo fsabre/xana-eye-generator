@@ -1,0 +1,33 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+}
+
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#canvas-container {
+    flex-grow: 1;
+    border-right: 1px solid;
+}
+
+#eye-canvas {
+    width: 100%;
+}
+
+#config-container {
+    flex-grow: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.config-generate {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
