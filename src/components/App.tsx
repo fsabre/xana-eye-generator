@@ -1,14 +1,21 @@
 import React from "react";
 
-import {Circle, Dot} from "../models/shapes.ts";
+import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {DotConfig} from "./DotConfig.tsx";
 import {CircleConfig} from "./CircleConfig.tsx";
 import {drawEye} from "../util/draw.ts";
+import {BranchConfig} from "./BranchConfig.tsx";
 
 const DEFAULT_DOT: Dot = {radius: 10};
 const DEFAULT_CIRCLES: Circle[] = [
     {radius: 30, width: 10},
     {radius: 50, width: 10},
+];
+const DEFAULT_BRANCHES: Branch[] = [
+    {length: 120, angle: 90, width: 10},
+    {length: 100, angle: -90, width: 10},
+    {length: 90, angle: -115, width: 10},
+    {length: 90, angle: -65, width: 10},
 ];
 
 function App() {
@@ -16,6 +23,7 @@ function App() {
     const [autoGenerate, setAutoGenerate] = React.useState(false);
     const [dot, setDot] = React.useState(DEFAULT_DOT);
     const [circles, setCircles] = React.useState(DEFAULT_CIRCLES);
+    const [branches, setBranches] = React.useState(DEFAULT_BRANCHES);
 
     const generate = React.useCallback(() => {
         console.log("Generating...");
@@ -30,15 +38,15 @@ function App() {
         const height = container.offsetHeight;
         canvas.width = width;
         canvas.height = height;
-        drawEye(ctx, width, height, dot, circles);
-    }, [dot, circles]);
+        drawEye(ctx, width, height, dot, circles, branches);
+    }, [dot, circles, branches]);
 
     React.useEffect(() => {
         if (autoGenerate || neverGenerated) {
             setNeverGenerated(false);
             generate();
         }
-    }, [generate, neverGenerated, autoGenerate, dot, circles]);
+    }, [generate, neverGenerated, autoGenerate, dot, circles, branches]);
 
     return (
         <div id={"app"}>
@@ -60,6 +68,20 @@ function App() {
                                 const newCircles = [...circles];
                                 newCircles[idx] = circle;
                                 setCircles(newCircles);
+                            }}
+                        />
+                    ))}
+                </div>
+                <div className={"config-section"}>
+                    {branches.map((branch, idx) => (
+                        <BranchConfig
+                            key={idx}
+                            label={String(idx + 1)}
+                            branch={branch}
+                            onBranchChange={(branch: Branch) => {
+                                const newBranches = [...branches];
+                                newBranches[idx] = branch;
+                                setBranches(newBranches);
                             }}
                         />
                     ))}
