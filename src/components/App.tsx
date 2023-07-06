@@ -19,12 +19,17 @@ function App() {
 
     const generate = React.useCallback(() => {
         console.log("Generating...");
+        const container = document.getElementById("canvas-container");
+        if (container === null) return;
         const canvas = document.getElementById("eye-canvas") as HTMLCanvasElement | null;
         if (canvas === null) return;
         const ctx = canvas.getContext("2d");
         if (ctx === null) return;
-        const width = canvas.width;
-        const height = canvas.height;
+        // Set the canvas size to its container size
+        const width = container.offsetWidth;
+        const height = container.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
         drawEye(ctx, width, height, dot, circles);
     }, [dot, circles]);
 
@@ -38,7 +43,6 @@ function App() {
     return (
         <div id={"app"}>
             <div id={"canvas-container"}>
-                {/* TODO Resolution problem */}
                 <canvas id={"eye-canvas"}></canvas>
             </div>
             <div id={"config-container"}>
