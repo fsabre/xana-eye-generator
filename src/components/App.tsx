@@ -54,8 +54,9 @@ function App() {
                     {circles.map((circle, idx) => (
                         <CircleConfig
                             key={idx}
+                            label={String(idx + 1)}
                             circle={circle}
-                            onCircleChange={circle => {
+                            onCircleChange={(circle: Circle) => {
                                 const newCircles = [...circles];
                                 newCircles[idx] = circle;
                                 setCircles(newCircles);
