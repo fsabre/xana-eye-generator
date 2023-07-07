@@ -7,13 +7,17 @@ interface ICircleConfigProps {
     label: string;
     circle: Circle;
     onCircleChange: (circle: Circle) => void;
+    onDelete: () => void;
 }
 
 export const CircleConfig: React.FC<ICircleConfigProps> = (props) => {
     const circle = props.circle;
     return (
         <div className={"CircleConfig"}>
-            <h3>Circle n°{props.label}</h3>
+            <div className={"config-shape-header"}>
+                <h3>Circle n°{props.label}</h3>
+                <input type={"button"} value={"-"} onClick={props.onDelete}/>
+            </div>
             <Slider
                 label={"Radius"}
                 min={1}

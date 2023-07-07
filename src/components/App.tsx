@@ -41,6 +41,26 @@ function App() {
         drawEye(ctx, width, height, dot, circles, branches);
     }, [dot, circles, branches]);
 
+    function onAddCircle(): void {
+        const circle: Circle = {radius: 50, width: 10};
+        setCircles([...circles, circle]);
+    }
+
+    function onCircleRemove(idxToDelete: number): void {
+        const newCircles: Circle[] = circles.filter((_, idx) => idx !== idxToDelete);
+        setCircles(newCircles);
+    }
+
+    function onAddBranch(): void {
+        const branch: Branch = {length: 50, width: 10, angle: 0};
+        setBranches([...branches, branch]);
+    }
+
+    function onBranchRemove(idxToDelete: number): void {
+        const newBranches: Branch[] = branches.filter((_, idx) => idx !== idxToDelete);
+        setBranches(newBranches);
+    }
+
     React.useEffect(() => {
         if (autoGenerate || neverGenerated) {
             setNeverGenerated(false);
@@ -59,6 +79,10 @@ function App() {
                     <DotConfig dot={dot} onDotChange={setDot}/>
                 </div>
                 <div className={"config-section"}>
+                    <div className={"config-section-header"}>
+                        <h2>Circles</h2>
+                        <input type={"button"} value={"+"} onClick={onAddCircle}/>
+                    </div>
                     {circles.map((circle, idx) => (
                         <CircleConfig
                             key={idx}
@@ -69,10 +93,15 @@ function App() {
                                 newCircles[idx] = circle;
                                 setCircles(newCircles);
                             }}
+                            onDelete={() => onCircleRemove(idx)}
                         />
                     ))}
                 </div>
                 <div className={"config-section"}>
+                    <div className={"config-section-header"}>
+                        <h2>Branches</h2>
+                        <input type={"button"} value={"+"} onClick={onAddBranch}/>
+                    </div>
                     {branches.map((branch, idx) => (
                         <BranchConfig
                             key={idx}
@@ -83,6 +112,7 @@ function App() {
                                 newBranches[idx] = branch;
                                 setBranches(newBranches);
                             }}
+                            onDelete={() => onBranchRemove(idx)}
                         />
                     ))}
                 </div>

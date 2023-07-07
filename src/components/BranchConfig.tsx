@@ -7,13 +7,17 @@ interface IBranchConfigProps {
     label: string;
     branch: Branch;
     onBranchChange: (branch: Branch) => void;
+    onDelete: () => void;
 }
 
 export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
     const branch = props.branch;
     return (
         <div className={"BranchConfig"}>
-            <h3>Branch n°{props.label}</h3>
+            <div className={"config-shape-header"}>
+                <h3>Branch n°{props.label}</h3>
+                <input type={"button"} value={"-"} onClick={props.onDelete}/>
+            </div>
             <Slider
                 label={"Length"}
                 min={1}
