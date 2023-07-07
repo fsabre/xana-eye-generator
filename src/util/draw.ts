@@ -29,7 +29,8 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y:
 function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number): void {
     ctx.beginPath();
     ctx.moveTo(x, y);
-    const angle = -branch.angle * Math.PI / 180; // Convert to radians and reverse to have the Y axis in the right way
+    // Convert the angle from degrees to radians. Angle is calculated clockwise, 0° is midnight.
+    const angle = (branch.angle - 90) * Math.PI / 180;
     const destX = x + branch.length * Math.cos(angle);
     const destY = y + branch.length * Math.sin(angle);
     ctx.lineTo(destX, destY);

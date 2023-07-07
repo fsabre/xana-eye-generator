@@ -37,8 +37,8 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
             />
             <Slider
                 label={"Angle"}
-                min={-180}
-                max={180}
+                min={0}
+                max={360}
                 value={branch.angle}
                 onChange={val => {
                     props.onBranchChange({...branch, angle: Number(val)});
