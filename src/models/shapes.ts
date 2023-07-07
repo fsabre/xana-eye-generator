@@ -11,4 +11,5 @@ export interface Branch {
     length: number;
     width: number;
     angle: number;
+    mirror: boolean;
 }

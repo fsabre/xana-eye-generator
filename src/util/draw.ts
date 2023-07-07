@@ -27,14 +27,21 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y:
 }
 
 function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number): void {
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    // Convert the angle from degrees to radians. Angle is calculated clockwise, 0° is midnight.
-    const angle = (branch.angle - 90) * Math.PI / 180;
-    const destX = x + branch.length * Math.cos(angle);
-    const destY = y + branch.length * Math.sin(angle);
-    ctx.lineTo(destX, destY);
-    ctx.strokeStyle = MAIN_COLOR;
-    ctx.lineWidth = branch.width;
-    ctx.stroke();
+    const angles = [branch.angle];
+    if (branch.mirror) {
+        // Push the reflected angle in case of mirroring
+        angles.push(360 - branch.angle);
+    }
+    for (const angle of angles) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        // Convert the angle from degrees to radians. Angle is calculated clockwise, 0° is midnight.
+        const radians_angle = (angle - 90) * Math.PI / 180;
+        const destX = x + branch.length * Math.cos(radians_angle);
+        const destY = y + branch.length * Math.sin(radians_angle);
+        ctx.lineTo(destX, destY);
+        ctx.strokeStyle = MAIN_COLOR;
+        ctx.lineWidth = branch.width;
+        ctx.stroke();
+    }
 }

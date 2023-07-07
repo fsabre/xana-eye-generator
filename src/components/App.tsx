@@ -12,10 +12,9 @@ const DEFAULT_CIRCLES: Circle[] = [
     {radius: 50, width: 10},
 ];
 const DEFAULT_BRANCHES: Branch[] = [
-    {length: 120, angle: 0, width: 10},
-    {length: 100, angle: 180, width: 10},
-    {length: 90, angle: 155, width: 10},
-    {length: 90, angle: 205, width: 10},
+    {length: 120, angle: 0, width: 10, mirror: false},
+    {length: 100, angle: 180, width: 10, mirror: false},
+    {length: 90, angle: 155, width: 10, mirror: true},
 ];
 
 function App() {
@@ -52,7 +51,7 @@ function App() {
     }
 
     function onAddBranch(): void {
-        const branch: Branch = {length: 50, width: 10, angle: 0};
+        const branch: Branch = {length: 50, width: 10, angle: 0, mirror: false};
         setBranches([...branches, branch]);
     }
 

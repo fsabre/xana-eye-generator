@@ -44,6 +44,10 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
                     props.onBranchChange({...branch, angle: Number(val)});
                 }}
             />
+            <label>Mirror</label>
+            <input type={"checkbox"} checked={branch.mirror} onChange={() => {
+                props.onBranchChange({...branch, mirror: !branch.mirror});
+            }}/>
         </div>
     );
 }
