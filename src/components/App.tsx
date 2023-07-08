@@ -18,8 +18,6 @@ const XANA_EYE_BRANCHES: Branch[] = [
 ];
 
 function App() {
-    const [willGenerate, setWillGenerate] = React.useState(true);
-    const [autoGenerate, setAutoGenerate] = React.useState(false);
     const [dot, setDot] = React.useState(XANA_EYE_DOT);
     const [circles, setCircles] = React.useState(WANE_EYE_CIRCLES);
     const [branches, setBranches] = React.useState(XANA_EYE_BRANCHES);
@@ -54,14 +52,12 @@ function App() {
         setDot(XANA_EYE_DOT);
         setCircles(WANE_EYE_CIRCLES);
         setBranches(XANA_EYE_BRANCHES);
-        setWillGenerate(true);
     }
 
     function onClear(): void {
         setDot({"radius": 0});
         setCircles([]);
         setBranches([]);
-        setWillGenerate(true);
     }
 
     function onAddCircle(): void {
@@ -109,11 +105,8 @@ function App() {
     }
 
     React.useEffect(() => {
-        if (autoGenerate || willGenerate) {
-            setWillGenerate(false);
-            generate();
-        }
-    }, [generate, willGenerate, autoGenerate, dot, circles, branches]);
+        generate();
+    }, [generate, dot, circles, branches]);
 
     return (
         <div id={"app"}>
@@ -165,17 +158,6 @@ function App() {
                             circles={circles}
                         />
                     ))}
-                </div>
-                <div style={{height: "100%"}}/>
-                <div className={"config-section config-generate"}>
-                    <input type={"button"} disabled={autoGenerate} value={"Generate"} onClick={generate}/>
-                    <div>
-                        <input
-                            type={"checkbox"}
-                            checked={autoGenerate}
-                            onChange={() => setAutoGenerate(!autoGenerate)}/>
-                        <label>Auto-generate</label>
-                    </div>
                 </div>
             </div>
         </div>

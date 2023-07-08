@@ -41,10 +41,3 @@ html, body, #root {
     align-items: center;
     gap: 20px;
 }
-
-.config-generate {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
