@@ -12,9 +12,9 @@ const WANE_EYE_CIRCLES: Circle[] = [
     {radius: 50, width: 10},
 ];
 const XANA_EYE_BRANCHES: Branch[] = [
-    {length: 120, angle: 0, width: 10, mirror: false, start: 1, end: -1},
-    {length: 100, angle: 180, width: 10, mirror: false, start: 1, end: -1},
-    {length: 90, angle: 155, width: 10, mirror: true, start: 1, end: -1},
+    {length: 120, angle: 0, width: 10, mirror: false, start: 1, end: -1, rounded_caps: false},
+    {length: 100, angle: 180, width: 10, mirror: false, start: 1, end: -1, rounded_caps: false},
+    {length: 90, angle: 155, width: 10, mirror: true, start: 1, end: -1, rounded_caps: false},
 ];
 
 function App() {
@@ -81,7 +81,15 @@ function App() {
     }
 
     function onAddBranch(): void {
-        const branch: Branch = {length: 50, width: 10, angle: 0, mirror: false, start: -1, end: -1};
+        const branch: Branch = {
+            length: 50,
+            width: 10,
+            angle: 0,
+            mirror: false,
+            start: -1,
+            end: -1,
+            rounded_caps: false,
+        };
         setBranches([...branches, branch]);
     }
 

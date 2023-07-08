@@ -14,4 +14,5 @@ export interface Branch {
     mirror: boolean;
     start: number; // Circle index. Use -1 if not bound to a circle
     end: number; // Circle index. Use -1 if not bound to a circle
+    rounded_caps: boolean;
 }

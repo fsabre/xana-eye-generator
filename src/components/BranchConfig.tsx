@@ -77,6 +77,10 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
                     props.onBranchChange({...branch, end: val});
                 }}
             />
+            <label>Rounded caps</label>
+            <input type={"checkbox"} checked={branch.rounded_caps} onChange={() => {
+                props.onBranchChange({...branch, rounded_caps: !branch.rounded_caps});
+            }}/>
         </div>
     );
 }

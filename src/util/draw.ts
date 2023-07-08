@@ -57,6 +57,7 @@ function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y:
         ctx.lineTo(destX, destY);
         ctx.strokeStyle = MAIN_COLOR;
         ctx.lineWidth = branch.width;
+        ctx.lineCap = branch.rounded_caps ? "round" : "butt";
         ctx.stroke();
     }
 }
