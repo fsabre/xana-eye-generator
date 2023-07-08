@@ -6,23 +6,23 @@ import {CircleConfig} from "./CircleConfig.tsx";
 import {drawEye} from "../util/draw.ts";
 import {BranchConfig} from "./BranchConfig.tsx";
 
-const DEFAULT_DOT: Dot = {radius: 10};
-const DEFAULT_CIRCLES: Circle[] = [
+const XANA_EYE_DOT: Dot = {radius: 10};
+const WANE_EYE_CIRCLES: Circle[] = [
     {radius: 30, width: 10},
     {radius: 50, width: 10},
 ];
-const DEFAULT_BRANCHES: Branch[] = [
+const XANA_EYE_BRANCHES: Branch[] = [
     {length: 120, angle: 0, width: 10, mirror: false, start: 1, end: -1},
     {length: 100, angle: 180, width: 10, mirror: false, start: 1, end: -1},
     {length: 90, angle: 155, width: 10, mirror: true, start: 1, end: -1},
 ];
 
 function App() {
-    const [neverGenerated, setNeverGenerated] = React.useState(true);
+    const [willGenerate, setWillGenerate] = React.useState(true);
     const [autoGenerate, setAutoGenerate] = React.useState(false);
-    const [dot, setDot] = React.useState(DEFAULT_DOT);
-    const [circles, setCircles] = React.useState(DEFAULT_CIRCLES);
-    const [branches, setBranches] = React.useState(DEFAULT_BRANCHES);
+    const [dot, setDot] = React.useState(XANA_EYE_DOT);
+    const [circles, setCircles] = React.useState(WANE_EYE_CIRCLES);
+    const [branches, setBranches] = React.useState(XANA_EYE_BRANCHES);
 
     const generate = React.useCallback(() => {
         console.log("Generating...");
@@ -39,6 +39,20 @@ function App() {
         canvas.height = height;
         drawEye(ctx, width, height, dot, circles, branches);
     }, [dot, circles, branches]);
+
+    function onEyeReset(): void {
+        setDot(XANA_EYE_DOT);
+        setCircles(WANE_EYE_CIRCLES);
+        setBranches(XANA_EYE_BRANCHES);
+        setWillGenerate(true);
+    }
+
+    function onClear(): void {
+        setDot({"radius": 0});
+        setCircles([]);
+        setBranches([]);
+        setWillGenerate(true);
+    }
 
     function onAddCircle(): void {
         const circle: Circle = {radius: 50, width: 10};
@@ -77,11 +91,11 @@ function App() {
     }
 
     React.useEffect(() => {
-        if (autoGenerate || neverGenerated) {
-            setNeverGenerated(false);
+        if (autoGenerate || willGenerate) {
+            setWillGenerate(false);
             generate();
         }
-    }, [generate, neverGenerated, autoGenerate, dot, circles, branches]);
+    }, [generate, willGenerate, autoGenerate, dot, circles, branches]);
 
     return (
         <div id={"app"}>
@@ -90,6 +104,8 @@ function App() {
             </div>
             <div id={"config-container"}>
                 <h1>Configuration</h1>
+                <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
+                <input type={"button"} value={"Clear"} onClick={onClear}/>
                 <div className={"config-section"}>
                     <DotConfig dot={dot} onDotChange={setDot}/>
                 </div>
