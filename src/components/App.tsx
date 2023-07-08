@@ -24,20 +24,30 @@ function App() {
     const [circles, setCircles] = React.useState(WANE_EYE_CIRCLES);
     const [branches, setBranches] = React.useState(XANA_EYE_BRANCHES);
 
+    const container_ref = React.useRef<HTMLElement | null>(null);
+    const canvas_ref = React.useRef<HTMLCanvasElement | null>(null);
+    const ctx_ref = React.useRef<CanvasRenderingContext2D | null>(null);
+
     const generate = React.useCallback(() => {
         console.log("Generating...");
-        const container = document.getElementById("canvas-container");
-        if (container === null) return;
-        const canvas = document.getElementById("eye-canvas") as HTMLCanvasElement | null;
-        if (canvas === null) return;
-        const ctx = canvas.getContext("2d");
-        if (ctx === null) return;
+        if (container_ref.current === null) {
+            container_ref.current = document.getElementById("canvas-container");
+            if (container_ref.current === null) throw Error("Missing canvas container");
+        }
+        if (canvas_ref.current === null) {
+            canvas_ref.current = document.getElementById("eye-canvas") as HTMLCanvasElement | null;
+            if (canvas_ref.current === null) throw Error("Missing canvas");
+        }
+        if (ctx_ref.current === null) {
+            ctx_ref.current = canvas_ref.current.getContext("2d");
+            if (ctx_ref.current === null) throw Error("Missing canvas 2D context");
+        }
         // Set the canvas size to its container size
-        const width = container.offsetWidth;
-        const height = container.offsetHeight;
-        canvas.width = width;
-        canvas.height = height;
-        drawEye(ctx, width, height, dot, circles, branches);
+        const width = container_ref.current.offsetWidth;
+        const height = container_ref.current.offsetHeight;
+        canvas_ref.current.width = width;
+        canvas_ref.current.height = height;
+        drawEye(ctx_ref.current, width, height, dot, circles, branches);
     }, [dot, circles, branches]);
 
     function onEyeReset(): void {
