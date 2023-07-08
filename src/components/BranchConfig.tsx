@@ -31,7 +31,7 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
             </div>
             <Slider
                 label={"Length"}
-                disabled={branch.start !== -1 && branch.end !== -1}
+                disabled={branch.end !== -1}
                 min={1}
                 max={200}
                 value={branch.length}
