@@ -12,9 +12,9 @@ const DEFAULT_CIRCLES: Circle[] = [
     {radius: 50, width: 10},
 ];
 const DEFAULT_BRANCHES: Branch[] = [
-    {length: 120, angle: 0, width: 10, mirror: false},
-    {length: 100, angle: 180, width: 10, mirror: false},
-    {length: 90, angle: 155, width: 10, mirror: true},
+    {length: 120, angle: 0, width: 10, mirror: false, start: 1, end: -1},
+    {length: 100, angle: 180, width: 10, mirror: false, start: 1, end: -1},
+    {length: 90, angle: 155, width: 10, mirror: true, start: 1, end: -1},
 ];
 
 function App() {
@@ -48,10 +48,21 @@ function App() {
     function onCircleRemove(idxToDelete: number): void {
         const newCircles: Circle[] = circles.filter((_, idx) => idx !== idxToDelete);
         setCircles(newCircles);
+        // Update the indexes of the branch starts/stops.
+        const newBranches: Branch[] = branches.map(branch => {
+            const newBranch = {...branch};
+            if (newBranch.start == idxToDelete) {
+                newBranch.start = -1;
+            } else if (newBranch.start > idxToDelete) {
+                newBranch.start -= 1;
+            }
+            return newBranch;
+        });
+        setBranches(newBranches);
     }
 
     function onAddBranch(): void {
-        const branch: Branch = {length: 50, width: 10, angle: 0, mirror: false};
+        const branch: Branch = {length: 50, width: 10, angle: 0, mirror: false, start: -1, end: -1};
         setBranches([...branches, branch]);
     }
 
@@ -112,6 +123,7 @@ function App() {
                                 setBranches(newBranches);
                             }}
                             onDelete={() => onBranchRemove(idx)}
+                            circles={circles}
                         />
                     ))}
                 </div>

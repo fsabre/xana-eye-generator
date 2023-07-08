@@ -12,4 +12,6 @@ export interface Branch {
     width: number;
     angle: number;
     mirror: boolean;
+    start: number; // Circle index. Use -1 if not bound to a circle
+    end: number; // Circle index. Use -1 if not bound to a circle
 }

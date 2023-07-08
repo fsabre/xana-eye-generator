@@ -8,7 +8,7 @@ export function drawEye(ctx: CanvasRenderingContext2D, width: number, height: nu
     const centerY = height / 2;
     drawDot(ctx, dot, centerX, centerY);
     circles.forEach(circle => drawCircle(ctx, circle, centerX, centerY));
-    branches.forEach(branch => drawBranch(ctx, branch, centerX, centerY));
+    branches.forEach(branch => drawBranch(ctx, branch, centerX, centerY, circles));
 }
 
 function drawDot(ctx: CanvasRenderingContext2D, dot: Dot, x: number, y: number): void {
@@ -26,17 +26,25 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y:
     ctx.stroke();
 }
 
-function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number): void {
+function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number, circles: Circle[]): void {
     const angles = [branch.angle];
     if (branch.mirror) {
         // Push the reflected angle in case of mirroring
         angles.push(360 - branch.angle);
     }
     for (const angle of angles) {
-        ctx.beginPath();
-        ctx.moveTo(x, y);
         // Convert the angle from degrees to radians. Angle is calculated clockwise, 0° is midnight.
         const radians_angle = (angle - 90) * Math.PI / 180;
+        ctx.beginPath();
+        if (branch.start === -1) {
+            ctx.moveTo(x, y);
+        } else {
+            // Bind the branch to a circle
+            const circle = circles[branch.start];
+            const startX = x + circle.radius * Math.cos(radians_angle);
+            const startY = y + circle.radius * Math.sin(radians_angle);
+            ctx.moveTo(startX, startY);
+        }
         const destX = x + branch.length * Math.cos(radians_angle);
         const destY = y + branch.length * Math.sin(radians_angle);
         ctx.lineTo(destX, destY);

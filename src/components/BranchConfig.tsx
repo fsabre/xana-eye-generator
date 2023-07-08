@@ -1,17 +1,24 @@
 import React from "react";
 
-import {Branch} from "../models/shapes.ts";
+import {Branch, Circle} from "../models/shapes.ts";
 import {Slider} from "./Slider.tsx";
+import {Dropdown, IOption} from "./Dropdown.tsx";
 
 interface IBranchConfigProps {
     label: string;
     branch: Branch;
     onBranchChange: (branch: Branch) => void;
     onDelete: () => void;
+    circles: Circle[];
 }
 
 export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
     const branch = props.branch;
+    const start_options: IOption[] = [
+        {"label": "Center", "value": -1},
+        ...props.circles.map((_, idx) => ({"label": `Circle n°${idx + 1}`, "value": idx})),
+    ];
+
     return (
         <div className={"BranchConfig"}>
             <div className={"config-shape-header"}>
@@ -48,6 +55,15 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
             <input type={"checkbox"} checked={branch.mirror} onChange={() => {
                 props.onBranchChange({...branch, mirror: !branch.mirror});
             }}/>
+            <br/>
+            <Dropdown
+                label={"Start"}
+                value={branch.start}
+                options={start_options}
+                onChange={val => {
+                    props.onBranchChange({...branch, start: val});
+                }}
+            />
         </div>
     );
 }
