@@ -56,6 +56,11 @@ function App() {
             } else if (newBranch.start > idxToDelete) {
                 newBranch.start -= 1;
             }
+            if (newBranch.end == idxToDelete) {
+                newBranch.end = -1;
+            } else if (newBranch.end > idxToDelete) {
+                newBranch.end -= 1;
+            }
             return newBranch;
         });
         setBranches(newBranches);

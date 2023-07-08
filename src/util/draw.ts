@@ -45,8 +45,15 @@ function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y:
             const startY = y + circle.radius * Math.sin(radians_angle);
             ctx.moveTo(startX, startY);
         }
-        const destX = x + branch.length * Math.cos(radians_angle);
-        const destY = y + branch.length * Math.sin(radians_angle);
+        let destX = 0, destY = 0;
+        if (branch.end === -1) {
+            destX = x + branch.length * Math.cos(radians_angle);
+            destY = y + branch.length * Math.sin(radians_angle);
+        } else {
+            const circle = circles[branch.end];
+            destX = x + circle.radius * Math.cos(radians_angle);
+            destY = y + circle.radius * Math.sin(radians_angle);
+        }
         ctx.lineTo(destX, destY);
         ctx.strokeStyle = MAIN_COLOR;
         ctx.lineWidth = branch.width;
