@@ -6,7 +6,7 @@ Made with TypeScript, React, Vite and HTML canvas.
 
 ## Demo
 
-Try it on ... *# TODO add link*
+Try it on [fsabre.github.io/xana-eye-generator](https://fsabre.github.io/xana-eye-generator/).
 
 ## Screenshots
 
