@@ -1,31 +1,112 @@
-html, body, #root {
+@font-face {
+    font-family: "gunship";
+    src: url("/assets/gunship.ttf");
+}
+
+html, body, #root, #app {
     height: 100%;
     margin: 0;
     overflow: clip;
 }
 
 #app {
-    height: 100%;
+    background: linear-gradient(#358192, #080b0b);
     display: flex;
     flex-direction: row;
 }
 
-#canvas-container {
-    width: 100%;
-    border-right: 1px solid;
-}
 
-#eye-canvas {
+.half {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
+    margin: 0;
 }
 
-#config-container {
-    width: 100%;
+#first-half {
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+#second-half {
+    padding: 15px 10px 10px 0;
+}
+
+.window {
+    display: flex;
+    flex-direction: column;
+}
+
+.window-titlebar {
+    display: flex;
+    flex-direction: row;
+}
+
+.window-titlebar-start {
+    background-image: url("/assets/window-titlebar-start.png");
+    height: 30px;
+    width: 180px;
+}
+
+.window-titlebar-title {
+    flex-grow: 1;
+    background-image: url("/assets/window-titlebar-middle.png");
+    padding: 8px 10px 0 0;
+    font-family: gunship, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.window-titlebar-end {
+    background-image: url("/assets/window-titlebar-end.png");
+    height: 30px;
+    width: 50px;
+}
+
+.window-content {
+    overflow: auto;
+    border: #6293aa solid;
+    border-width: 0 5px 0 5px;
     padding: 10px;
+    background: #1b556a;
+}
+
+.window-footerbar-start {
+    background-image: url("/assets/window-footerbar-start.png");
+    height: 30px;
+    width: 70px;
+}
+
+.window-footerbar-title {
+    flex-grow: 1;
+    background-image: url("/assets/window-footerbar-middle.png");
+}
+
+.window-footerbar-end {
+    background-image: url("/assets/window-footerbar-end.png");
+    height: 30px;
+    width: 40px;
+}
+
+#description-window {
+    overflow: auto;
+    margin: 0 10px 0 40px;
+}
+
+#config-window {
+    height: 100%;
     overflow: auto;
     display: flex;
     flex-direction: column;
+}
+
+#eye-canvas {
+    height: 300px;
+    width: 300px;
 }
 
 .config-section-header {
@@ -40,4 +121,27 @@ html, body, #root {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+@media only screen and (max-width: 820px) {
+    #app {
+        overflow: auto;
+        flex-direction: column;
+    }
+
+    .half {
+        height: auto;
+    }
+
+    #description-window {
+        margin: 0;
+    }
+
+    #second-half {
+        padding: 0 10px 10px 10px;
+    }
+
+    #config-window {
+        height: auto;
+    }
 }

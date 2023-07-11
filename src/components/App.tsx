@@ -5,6 +5,7 @@ import {DotConfig} from "./DotConfig.tsx";
 import {CircleConfig} from "./CircleConfig.tsx";
 import {drawEye} from "../util/draw.ts";
 import {BranchConfig} from "./BranchConfig.tsx";
+import {Window} from "./Window.tsx";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
 const WANE_EYE_CIRCLES: Circle[] = [
@@ -29,7 +30,7 @@ function App() {
     const generate = React.useCallback(() => {
         console.log("Generating...");
         if (container_ref.current === null) {
-            container_ref.current = document.getElementById("canvas-container");
+            container_ref.current = document.getElementById("canvas-window");
             if (container_ref.current === null) throw Error("Missing canvas container");
         }
         if (canvas_ref.current === null) {
@@ -41,8 +42,8 @@ function App() {
             if (ctx_ref.current === null) throw Error("Missing canvas 2D context");
         }
         // Set the canvas size to its container size
-        const width = container_ref.current.offsetWidth;
-        const height = container_ref.current.offsetHeight;
+        const width = 450; //container_ref.current.offsetWidth;
+        const height = 450; //container_ref.current.offsetHeight;
         canvas_ref.current.width = width;
         canvas_ref.current.height = height;
         drawEye(ctx_ref.current, width, height, dot, circles, branches);
@@ -110,55 +111,92 @@ function App() {
 
     return (
         <div id={"app"}>
-            <div id={"canvas-container"}>
-                <canvas id={"eye-canvas"}></canvas>
+            <div id={"first-half"} className={"half"}>
+                <Window
+                    title={"Description"}
+                    id={"description-window"}
+                    content={
+                        <p>
+                            Curabitur sit amet libero eget enim eleifend lacinia. Vivamus sagittis volutpat dui.
+                            Suspendisse potenti. Morbi a nibh eu augue fermentum posuere. Curabitur elit augue, porta
+                            quis, congue aliquam, rutrum non, massa. Integer mattis mollis ipsum. Sed tellus enim,
+                            mattis id, feugiat sed, eleifend in, elit. Phasellus non purus sed elit viverra rhoncus.
+                            Vestibulum id tellus vel sem imperdiet congue. Aenean in arcu. Nullam urna justo, imperdiet
+                            eget, volutpat vitae, semper eu, quam. Sed turpis dui, porttitor ut, egestas ac, condimentum
+                            non, wisi. Fusce iaculis turpis eget dui. Quisque pulvinar est pellentesque leo. Ut nulla
+                            elit, mattis vel, scelerisque vel, blandit ut, justo. Nulla feugiat risus in erat.<br/>
+                            Curabitur sit amet libero eget enim eleifend lacinia. Vivamus sagittis volutpat dui.
+                            Suspendisse potenti. Morbi a nibh eu augue fermentum posuere. Curabitur elit augue, porta
+                            quis, congue aliquam, rutrum non, massa. Integer mattis mollis ipsum. Sed tellus enim,
+                            mattis id, feugiat sed, eleifend in, elit. Phasellus non purus sed elit viverra rhoncus.
+                            Vestibulum id tellus vel sem imperdiet congue. Aenean in arcu. Nullam urna justo, imperdiet
+                            eget, volutpat vitae, semper eu, quam. Sed turpis dui, porttitor ut, egestas ac, condimentum
+                            non, wisi. Fusce iaculis turpis eget dui. Quisque pulvinar est pellentesque leo. Ut nulla
+                            elit, mattis vel, scelerisque vel, blandit ut, justo. Nulla feugiat risus in erat.
+                        </p>
+                    }
+                />
+                <Window
+                    title={"Canvas"}
+                    id={"canvas-window"}
+                    content={
+                        <canvas id={"eye-canvas"}></canvas>
+                    }
+                />
             </div>
-            <div id={"config-container"}>
-                <h1>Configuration</h1>
-                <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
-                <input type={"button"} value={"Clear"} onClick={onClear}/>
-                <div className={"config-section"}>
-                    <DotConfig dot={dot} onDotChange={setDot}/>
-                </div>
-                <div className={"config-section"}>
-                    <div className={"config-section-header"}>
-                        <h2>Circles</h2>
-                        <input type={"button"} value={"+"} onClick={onAddCircle}/>
-                    </div>
-                    {circles.map((circle, idx) => (
-                        <CircleConfig
-                            key={idx}
-                            label={String(idx + 1)}
-                            circle={circle}
-                            onCircleChange={(circle: Circle) => {
-                                const newCircles = [...circles];
-                                newCircles[idx] = circle;
-                                setCircles(newCircles);
-                            }}
-                            onDelete={() => onCircleRemove(idx)}
-                        />
-                    ))}
-                </div>
-                <div className={"config-section"}>
-                    <div className={"config-section-header"}>
-                        <h2>Branches</h2>
-                        <input type={"button"} value={"+"} onClick={onAddBranch}/>
-                    </div>
-                    {branches.map((branch, idx) => (
-                        <BranchConfig
-                            key={idx}
-                            label={String(idx + 1)}
-                            branch={branch}
-                            onBranchChange={(branch: Branch) => {
-                                const newBranches = [...branches];
-                                newBranches[idx] = branch;
-                                setBranches(newBranches);
-                            }}
-                            onDelete={() => onBranchRemove(idx)}
-                            circles={circles}
-                        />
-                    ))}
-                </div>
+            <div id={"second-half"} className={"half"}>
+                <Window
+                    title={"Configuration"}
+                    id={"config-window"}
+                    content={
+                        <div>
+                            <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
+                            <input type={"button"} value={"Clear"} onClick={onClear}/>
+                            <div className={"config-section"}>
+                                <DotConfig dot={dot} onDotChange={setDot}/>
+                            </div>
+                            <div className={"config-section"}>
+                                <div className={"config-section-header"}>
+                                    <h2>Circles</h2>
+                                    <input type={"button"} value={"+"} onClick={onAddCircle}/>
+                                </div>
+                                {circles.map((circle, idx) => (
+                                    <CircleConfig
+                                        key={idx}
+                                        label={String(idx + 1)}
+                                        circle={circle}
+                                        onCircleChange={(circle: Circle) => {
+                                            const newCircles = [...circles];
+                                            newCircles[idx] = circle;
+                                            setCircles(newCircles);
+                                        }}
+                                        onDelete={() => onCircleRemove(idx)}
+                                    />
+                                ))}
+                            </div>
+                            <div className={"config-section"}>
+                                <div className={"config-section-header"}>
+                                    <h2>Branches</h2>
+                                    <input type={"button"} value={"+"} onClick={onAddBranch}/>
+                                </div>
+                                {branches.map((branch, idx) => (
+                                    <BranchConfig
+                                        key={idx}
+                                        label={String(idx + 1)}
+                                        branch={branch}
+                                        onBranchChange={(branch: Branch) => {
+                                            const newBranches = [...branches];
+                                            newBranches[idx] = branch;
+                                            setBranches(newBranches);
+                                        }}
+                                        onDelete={() => onBranchRemove(idx)}
+                                        circles={circles}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    }
+                />
             </div>
         </div>
     );
