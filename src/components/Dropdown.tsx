@@ -14,7 +14,7 @@ interface IDropdownProps {
 
 export const Dropdown: React.FC<IDropdownProps> = (props) => {
     return (
-        <div>
+        <div className={"config-shape-control"}>
             <label>{props.label}</label>
             <select
                 value={props.value}

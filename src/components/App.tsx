@@ -128,9 +128,14 @@ function App() {
                     id={"config-window"}
                     content={
                         <div>
-                            <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
-                            <input type={"button"} value={"Clear"} onClick={onClear}/>
+                            <div className={"config-actionbar"}>
+                                <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
+                                <input type={"button"} value={"Clear"} onClick={onClear}/>
+                            </div>
                             <div className={"config-section"}>
+                                <div className={"config-section-header"}>
+                                    <h2>Dot</h2>
+                                </div>
                                 <DotConfig dot={dot} onDotChange={setDot}/>
                             </div>
                             <div className={"config-section"}>
