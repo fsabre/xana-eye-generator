@@ -145,3 +145,16 @@ html, body, #root, #app {
         height: auto;
     }
 }
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #6293aa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #137a72;
+    box-shadow: inset 0 0 3px white;
+}
