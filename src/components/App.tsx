@@ -1,11 +1,12 @@
 import React from "react";
 
-import {Branch, Circle, Dot} from "../models/shapes.ts";
-import {DotConfig} from "./DotConfig.tsx";
-import {CircleConfig} from "./CircleConfig.tsx";
-import {drawEye} from "../util/draw.ts";
 import {BranchConfig} from "./BranchConfig.tsx";
+import {CircleConfig} from "./CircleConfig.tsx";
+import {DotConfig} from "./DotConfig.tsx";
 import {Window} from "./Window.tsx";
+import {Branch, Circle, Dot} from "../models/shapes.ts";
+import {drawEye} from "../util/draw.ts";
+import {getVersion} from "../util/version.ts";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
 const WANE_EYE_CIRCLES: Circle[] = [
@@ -117,6 +118,7 @@ function App() {
                     id={"description-window"}
                     content={
                         <p>
+                            Version : {getVersion()}<br/>
                             Curabitur sit amet libero eget enim eleifend lacinia. Vivamus sagittis volutpat dui.
                             Suspendisse potenti. Morbi a nibh eu augue fermentum posuere. Curabitur elit augue, porta
                             quis, congue aliquam, rutrum non, massa. Integer mattis mollis ipsum. Sed tellus enim,
