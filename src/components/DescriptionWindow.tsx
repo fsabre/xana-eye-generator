@@ -25,6 +25,11 @@ export const DescriptionWindow: React.FC = () => {
                     Version&nbsp;: <em>{getVersion()}</em>
                 </p>
                 <p>
+                    The aim of this interface is to prototype, to find inspiration by moving some sliders.<br/>
+                    It's voluntarily short on functions so that the user is not overwhelmed and for the logos to stay
+                    in line with the model : concentric circles and branches.
+                </p>
+                <p>
                     You can edit the properties of several shapes&nbsp;:
                     <ul>
                         <li>
