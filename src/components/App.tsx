@@ -2,11 +2,11 @@ import React from "react";
 
 import {BranchConfig} from "./BranchConfig.tsx";
 import {CircleConfig} from "./CircleConfig.tsx";
+import {DescriptionWindow} from "./DescriptionWindow.tsx";
 import {DotConfig} from "./DotConfig.tsx";
 import {Window} from "./Window.tsx";
 import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {drawEye} from "../util/draw.ts";
-import {getVersion} from "../util/version.ts";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
 const WANE_EYE_CIRCLES: Circle[] = [
@@ -113,31 +113,7 @@ function App() {
     return (
         <div id={"app"}>
             <div id={"first-half"} className={"half"}>
-                <Window
-                    title={"Description"}
-                    id={"description-window"}
-                    content={
-                        <p>
-                            Version : {getVersion()}<br/>
-                            Curabitur sit amet libero eget enim eleifend lacinia. Vivamus sagittis volutpat dui.
-                            Suspendisse potenti. Morbi a nibh eu augue fermentum posuere. Curabitur elit augue, porta
-                            quis, congue aliquam, rutrum non, massa. Integer mattis mollis ipsum. Sed tellus enim,
-                            mattis id, feugiat sed, eleifend in, elit. Phasellus non purus sed elit viverra rhoncus.
-                            Vestibulum id tellus vel sem imperdiet congue. Aenean in arcu. Nullam urna justo, imperdiet
-                            eget, volutpat vitae, semper eu, quam. Sed turpis dui, porttitor ut, egestas ac, condimentum
-                            non, wisi. Fusce iaculis turpis eget dui. Quisque pulvinar est pellentesque leo. Ut nulla
-                            elit, mattis vel, scelerisque vel, blandit ut, justo. Nulla feugiat risus in erat.<br/>
-                            Curabitur sit amet libero eget enim eleifend lacinia. Vivamus sagittis volutpat dui.
-                            Suspendisse potenti. Morbi a nibh eu augue fermentum posuere. Curabitur elit augue, porta
-                            quis, congue aliquam, rutrum non, massa. Integer mattis mollis ipsum. Sed tellus enim,
-                            mattis id, feugiat sed, eleifend in, elit. Phasellus non purus sed elit viverra rhoncus.
-                            Vestibulum id tellus vel sem imperdiet congue. Aenean in arcu. Nullam urna justo, imperdiet
-                            eget, volutpat vitae, semper eu, quam. Sed turpis dui, porttitor ut, egestas ac, condimentum
-                            non, wisi. Fusce iaculis turpis eget dui. Quisque pulvinar est pellentesque leo. Ut nulla
-                            elit, mattis vel, scelerisque vel, blandit ut, justo. Nulla feugiat risus in erat.
-                        </p>
-                    }
-                />
+                <DescriptionWindow/>
                 <Window
                     title={"Canvas"}
                     id={"canvas-window"}
