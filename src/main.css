@@ -52,13 +52,13 @@ html, body, #root, #app {
 .window-titlebar-start {
     background-image: url("/assets/window-titlebar-start.png");
     height: 30px;
-    width: 180px;
+    width: 179px;
 }
 
 .window-titlebar-title {
     flex-grow: 1;
     background-image: url("/assets/window-titlebar-middle.png");
-    padding: 8px 10px 0 0;
+    padding: 8px 0 0 0;
     font-family: gunship, sans-serif;
     text-align: center;
     color: white;
@@ -67,7 +67,7 @@ html, body, #root, #app {
 .window-titlebar-end {
     background-image: url("/assets/window-titlebar-end.png");
     height: 30px;
-    width: 50px;
+    width: 44px;
 }
 
 .window-content {
