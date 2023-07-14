@@ -2,11 +2,15 @@
 
 A web interface to quickly create XANA-like logos.
 
+The aim of this interface is to prototype, to find inspiration by moving some sliders. It's voluntarily short on
+functions so that the user is not overwhelmed and for the logos to stay in line with the model : concentric circles and
+branches.
+
 Made with TypeScript, React, Vite and HTML canvas.
 
 ## Demo
 
-Try it on ... *# TODO add link*
+Try it on [fsabre.github.io/xana-eye-generator](https://fsabre.github.io/xana-eye-generator/).
 
 ## Screenshots
 
@@ -23,7 +27,7 @@ You can edit the properties of several shapes :
 - Multiple concentric circles
 
     + Radius : the radius of the circle
-    + Width : the width of the line 
+    + Width : the width of the line
 
 - Multiple branches aligned with the center
 

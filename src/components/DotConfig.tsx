@@ -12,9 +12,6 @@ export const DotConfig: React.FC<IDotConfigProps> = (props) => {
     const dot = props.dot;
     return (
         <div className={"DotConfig"}>
-            <div className={"config-section-header"}>
-                <h2>Dot</h2>
-            </div>
             <Slider
                 label={"Radius"}
                 value={dot.radius}

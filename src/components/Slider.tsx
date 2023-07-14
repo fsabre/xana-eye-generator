@@ -18,7 +18,7 @@ const DEFAULT_PROPS: Partial<ISliderProps> = {
 export const Slider: React.FC<ISliderProps> = (props) => {
     props = {...DEFAULT_PROPS, ...props};
     return (
-        <div className={"Slider"}>
+        <div className={"Slider config-shape-control"}>
             <label>{props.label}</label>
             <input
                 type={"range"}

@@ -56,11 +56,12 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
                     props.onBranchChange({...branch, angle: Number(val)});
                 }}
             />
-            <label>Mirror</label>
-            <input type={"checkbox"} checked={branch.mirror} onChange={() => {
-                props.onBranchChange({...branch, mirror: !branch.mirror});
-            }}/>
-            <br/>
+            <div className={"config-shape-control"}>
+                <label>Mirror</label>
+                <input type={"checkbox"} checked={branch.mirror} onChange={() => {
+                    props.onBranchChange({...branch, mirror: !branch.mirror});
+                }}/>
+            </div>
             <Dropdown
                 label={"Start"}
                 value={branch.start}
@@ -77,10 +78,12 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
                     props.onBranchChange({...branch, end: val});
                 }}
             />
-            <label>Rounded caps</label>
-            <input type={"checkbox"} checked={branch.rounded_caps} onChange={() => {
-                props.onBranchChange({...branch, rounded_caps: !branch.rounded_caps});
-            }}/>
+            <div className={"config-shape-control"}>
+                <label>Rounded caps</label>
+                <input type={"checkbox"} checked={branch.rounded_caps} onChange={() => {
+                    props.onBranchChange({...branch, rounded_caps: !branch.rounded_caps});
+                }}/>
+            </div>
         </div>
     );
 }

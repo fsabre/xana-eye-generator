@@ -1,31 +1,121 @@
-html, body, #root {
+@font-face {
+    font-family: "gunship";
+    src: url("/assets/gunship.ttf");
+}
+
+html, body, #root, #app {
     height: 100%;
     margin: 0;
     overflow: clip;
 }
 
 #app {
+    background: linear-gradient(#358192, #080b0b);
+    display: flex;
+    flex-direction: row;
+    /* Set font properties for the whole app */
+    font-family: "Lucida Console", sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+.half {
+    box-sizing: border-box;
+    width: 100%;
     height: 100%;
+    margin: 0;
+}
+
+#first-half {
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+#second-half {
+    padding: 15px 10px 10px 0;
+}
+
+.window {
+    display: flex;
+    flex-direction: column;
+}
+
+.window-titlebar {
     display: flex;
     flex-direction: row;
 }
 
-#canvas-container {
-    width: 100%;
-    border-right: 1px solid;
+.window-titlebar-start {
+    background-image: url("/assets/window-titlebar-start.png");
+    height: 30px;
+    width: 179px;
 }
 
-#eye-canvas {
-    width: 100%;
-    height: 100%;
+.window-titlebar-title {
+    flex-grow: 1;
+    background-image: url("/assets/window-titlebar-middle.png");
+    padding: 8px 0 0 0;
+    font-family: gunship, sans-serif;
+    text-align: center;
+    color: white;
 }
 
-#config-container {
-    width: 100%;
+.window-titlebar-end {
+    background-image: url("/assets/window-titlebar-end.png");
+    height: 30px;
+    width: 44px;
+}
+
+.window-content {
+    overflow: auto;
+    border: #6293aa solid;
+    border-width: 0 5px 0 5px;
     padding: 10px;
+    background: #1b556a;
+}
+
+.window-footerbar-start {
+    background-image: url("/assets/window-footerbar-start.png");
+    height: 30px;
+    width: 70px;
+}
+
+.window-footerbar-title {
+    flex-grow: 1;
+    background-image: url("/assets/window-footerbar-middle.png");
+}
+
+.window-footerbar-end {
+    background-image: url("/assets/window-footerbar-end.png");
+    height: 30px;
+    width: 40px;
+}
+
+#description-window {
+    overflow: auto;
+    margin: 0 10px 0 40px;
+}
+
+#config-window {
+    height: 100%;
     overflow: auto;
     display: flex;
     flex-direction: column;
+}
+
+#eye-canvas {
+    height: 300px;
+    width: 300px;
+}
+
+.config-actionbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .config-section-header {
@@ -36,8 +126,106 @@ html, body, #root {
 }
 
 .config-shape-header {
+    margin-left: -12px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+.DotConfig, .CircleConfig, .BranchConfig {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border-left: 2px solid #137a72;
+}
+
+.config-shape-control {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.config-shape-control input {
+    accent-color: #137a72;
+}
+
+.config-shape-control select, .config-shape-control select:focus {
+    background-color: #137a72;
+    border-color: #132c36;
+}
+
+h1 {
+    font-family: gunship, sans-serif;
+    font-size: large;
+    letter-spacing: .08rem;
+}
+
+h3 {
+    margin: 0;
+}
+
+em {
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+a:hover {
+    color: #137a72;
+    text-decoration-thickness: 1px;
+    text-decoration-style: dashed;
+}
+
+input[type=button] {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: #132c36;
+    padding: 3px 5px 3px 5px;
+    font-family: "Lucida Console", sans-serif;
+    font-size: large;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+input[type=button]:hover {
+    background-color: #137a72;;
+}
+
+@media only screen and (max-width: 820px) {
+    #app {
+        overflow: auto;
+        flex-direction: column;
+    }
+
+    .half {
+        height: auto;
+    }
+
+    #description-window {
+        margin: 0;
+    }
+
+    #second-half {
+        padding: 0 10px 10px 10px;
+    }
+
+    #config-window {
+        height: auto;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #6293aa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #137a72;
+    box-shadow: inset 0 0 3px white;
 }
