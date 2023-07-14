@@ -2,7 +2,7 @@
   "name": "xana-eye-generator",
   "description": "A web interface to quickly create XANA-like logos",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
