@@ -1,7 +1,8 @@
 import React from "react";
 
-import {Dot} from "../models/shapes.ts";
 import {Slider} from "./Slider.tsx";
+import {Dot} from "../models/shapes.ts";
+import {MAX_DOT_RADIUS, MIN_DOT_RADIUS} from "../util/constants.ts";
 
 interface IDotConfigProps {
     dot: Dot;
@@ -14,6 +15,8 @@ export const DotConfig: React.FC<IDotConfigProps> = (props) => {
         <div className={"DotConfig"}>
             <Slider
                 label={"Radius"}
+                min={MIN_DOT_RADIUS}
+                max={MAX_DOT_RADIUS}
                 value={dot.radius}
                 onChange={val => {
                     props.onDotChange({...dot, radius: val});

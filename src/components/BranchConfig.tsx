@@ -1,8 +1,16 @@
 import React from "react";
 
-import {Branch, Circle} from "../models/shapes.ts";
-import {Slider} from "./Slider.tsx";
 import {Dropdown, IOption} from "./Dropdown.tsx";
+import {Slider} from "./Slider.tsx";
+import {Branch, Circle} from "../models/shapes.ts";
+import {
+    MAX_BRANCH_ANGLE,
+    MAX_BRANCH_LENGTH,
+    MAX_BRANCH_WIDTH,
+    MIN_BRANCH_ANGLE,
+    MIN_BRANCH_LENGTH,
+    MIN_BRANCH_WIDTH
+} from "../util/constants.ts";
 
 interface IBranchConfigProps {
     label: string;
@@ -32,16 +40,16 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
             <Slider
                 label={"Length"}
                 disabled={branch.end !== -1}
-                min={1}
-                max={200}
+                min={MIN_BRANCH_LENGTH}
+                max={MAX_BRANCH_LENGTH}
                 value={branch.length}
                 onChange={val => {
                     props.onBranchChange({...branch, length: Number(val)});
                 }}/>
             <Slider
                 label={"Width"}
-                min={1}
-                max={100}
+                min={MIN_BRANCH_WIDTH}
+                max={MAX_BRANCH_WIDTH}
                 value={branch.width}
                 onChange={val => {
                     props.onBranchChange({...branch, width: Number(val)});
@@ -49,8 +57,8 @@ export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
             />
             <Slider
                 label={"Angle"}
-                min={0}
-                max={360}
+                min={MIN_BRANCH_ANGLE}
+                max={MAX_BRANCH_ANGLE}
                 value={branch.angle}
                 onChange={val => {
                     props.onBranchChange({...branch, angle: Number(val)});
