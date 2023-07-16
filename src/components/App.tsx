@@ -7,6 +7,7 @@ import {DotConfig} from "./DotConfig.tsx";
 import {Window} from "./Window.tsx";
 import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {drawEye} from "../util/draw.ts";
+import {createCircle} from "../util/findroom.ts";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
 const WANE_EYE_CIRCLES: Circle[] = [
@@ -63,7 +64,7 @@ function App() {
     }
 
     function onAddCircle(): void {
-        const circle: Circle = {radius: 50, width: 10};
+        const circle: Circle = createCircle(dot, circles);
         setCircles([...circles, circle]);
     }
 
