@@ -1,5 +1,5 @@
-import {MAX_CIRCLE_RADIUS, MIN_CIRCLE_RADIUS} from "./constants.ts";
-import {Circle, Dot} from "../models/shapes.ts";
+import {MAX_BRANCH_ANGLE, MAX_CIRCLE_RADIUS, MIN_BRANCH_ANGLE, MIN_CIRCLE_RADIUS} from "./constants.ts";
+import {Branch, Circle, Dot} from "../models/shapes.ts";
 
 type Interval = [number, number];
 
@@ -71,4 +71,48 @@ export function createCircle(dot: Dot, circles: Circle[]): Circle {
         final_circle.width = Math.min(Math.max(free_interval[1] - free_interval[0] - 2, 1), 10);
     }
     return final_circle;
+}
+
+// Return a new circle, positioned so that it is not hidden
+export function createBranch(branches: Branch[]): Branch {
+    // Let's find all angles that are taken by the other branches.
+    const taken: Interval[] = [];
+    // Quick method to support mirrored branches
+    branches = [
+        ...branches,
+        ...branches.filter(b => b.mirror).map(b => ({...b, angle: 360 - b.angle}))
+    ];
+    branches.forEach(b => {
+        const base_angle = b.angle;
+        // Try to account for the width of the branch
+        const width_angle = Math.tan((b.width / 2) / b.length) * 180 / Math.PI;
+        const start = Math.floor(base_angle - width_angle);
+        const end = Math.ceil(base_angle + width_angle);
+        // Wrap the interval around [0, 360]
+        if (start < 0) {
+            taken.push([0, end]);
+            taken.push([start + 360, 360]);
+        } else if (end > 360) {
+            taken.push([start, 360]);
+            taken.push([0, end - 360]);
+        } else {
+            taken.push([start, end]);
+        }
+    });
+    // Find the greatest free interval
+    const free_interval = findGreatestFreeInterval(taken, MIN_BRANCH_ANGLE, MAX_BRANCH_ANGLE);
+    // Use it to determinate the next branch properties
+    const final_branch: Branch = {
+        length: 100,
+        width: 10,
+        angle: 0,
+        mirror: false,
+        start: -1,
+        end: -1,
+        rounded_caps: false,
+    };
+    if (free_interval !== null) {
+        final_branch.angle = Math.floor((free_interval[1] + free_interval[0]) / 2);
+    }
+    return final_branch;
 }

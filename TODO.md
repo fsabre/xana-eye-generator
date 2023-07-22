@@ -14,7 +14,3 @@ Configuration :
 
 - Replace the "length" parameter name by "distance" to be more explicit ?
 - Replace the "None" end parameter by "Use distance" to be more explicit ?
-
-Drawing :
-
-- Improve the default values chosen for new circles and branches, so that they are not hidden at first

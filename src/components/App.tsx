@@ -7,7 +7,7 @@ import {DotConfig} from "./DotConfig.tsx";
 import {Window} from "./Window.tsx";
 import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {drawEye} from "../util/draw.ts";
-import {createCircle} from "../util/findroom.ts";
+import {createBranch, createCircle} from "../util/findroom.ts";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
 const WANE_EYE_CIRCLES: Circle[] = [
@@ -90,15 +90,7 @@ function App() {
     }
 
     function onAddBranch(): void {
-        const branch: Branch = {
-            length: 50,
-            width: 10,
-            angle: 0,
-            mirror: false,
-            start: -1,
-            end: -1,
-            rounded_caps: false,
-        };
+        const branch: Branch = createBranch(branches);
         setBranches([...branches, branch]);
     }
 
