@@ -3,8 +3,6 @@
 Project :
 
 - Comment the code
-- Add an automatic changelog
-- Make the number version redirect to the changelog
 
 Graphical aspect :
 

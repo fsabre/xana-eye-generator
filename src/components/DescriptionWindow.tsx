@@ -20,7 +20,10 @@ export const DescriptionWindow: React.FC = () => {
                     <a target={"_blank"} href={"https://github.com/fsabre/xana-eye-generator"}>
                         https://github.com/fsabre/xana-eye-generator
                     </a><br/>
-                    Version&nbsp;: <em>{getVersion()}</em>
+                    Version&nbsp;:&#32;
+                    <a target={"_blank"} href={"https://github.com/fsabre/xana-eye-generator/blob/master/CHANGELOG.md"}>
+                        {getVersion()}
+                    </a>
                 </p>
                 <p>
                     The aim of this interface is to prototype, to find inspiration by moving some sliders.<br/>
