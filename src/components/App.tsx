@@ -7,9 +7,10 @@ import {DotConfig} from "./DotConfig.tsx";
 import {Window} from "./Window.tsx";
 import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {drawEye} from "../util/draw.ts";
+import {createBranch, createCircle} from "../util/findroom.ts";
 
 const XANA_EYE_DOT: Dot = {radius: 10};
-const WANE_EYE_CIRCLES: Circle[] = [
+const XANA_EYE_CIRCLES: Circle[] = [
     {radius: 30, width: 10},
     {radius: 50, width: 10},
 ];
@@ -21,7 +22,7 @@ const XANA_EYE_BRANCHES: Branch[] = [
 
 function App() {
     const [dot, setDot] = React.useState(XANA_EYE_DOT);
-    const [circles, setCircles] = React.useState(WANE_EYE_CIRCLES);
+    const [circles, setCircles] = React.useState(XANA_EYE_CIRCLES);
     const [branches, setBranches] = React.useState(XANA_EYE_BRANCHES);
 
     const container_ref = React.useRef<HTMLElement | null>(null);
@@ -52,7 +53,7 @@ function App() {
 
     function onEyeReset(): void {
         setDot(XANA_EYE_DOT);
-        setCircles(WANE_EYE_CIRCLES);
+        setCircles(XANA_EYE_CIRCLES);
         setBranches(XANA_EYE_BRANCHES);
     }
 
@@ -63,7 +64,7 @@ function App() {
     }
 
     function onAddCircle(): void {
-        const circle: Circle = {radius: 50, width: 10};
+        const circle: Circle = createCircle(dot, circles);
         setCircles([...circles, circle]);
     }
 
@@ -89,15 +90,7 @@ function App() {
     }
 
     function onAddBranch(): void {
-        const branch: Branch = {
-            length: 50,
-            width: 10,
-            angle: 0,
-            mirror: false,
-            start: -1,
-            end: -1,
-            rounded_caps: false,
-        };
+        const branch: Branch = createBranch(branches);
         setBranches([...branches, branch]);
     }
 

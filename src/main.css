@@ -10,11 +10,35 @@ html, body, #root, #app {
 }
 
 #app {
-    background: linear-gradient(#358192, #080b0b);
+    /* Define the background and its 3 gradients : vertical lines, horizontal lines, and linear gradient */
+    --lines-color: #90dbff40;
+    background: repeating-linear-gradient(
+            90deg,
+            transparent 0px, transparent 100px,
+            var(--lines-color) 100px, var(--lines-color) 101px,
+            transparent 101px, transparent 250px,
+            var(--lines-color) 250px, var(--lines-color) 251px,
+            transparent 251px, transparent 450px,
+            var(--lines-color) 450px, var(--lines-color) 451px,
+            transparent 451px, transparent 650px,
+            var(--lines-color) 650px, var(--lines-color) 651px
+    ),
+    repeating-linear-gradient(
+            transparent 0px, transparent 150px,
+            var(--lines-color) 150px, var(--lines-color) 151px,
+            transparent 151px, transparent 200px,
+            var(--lines-color) 200px, var(--lines-color) 201px,
+            transparent 201px, transparent 350px,
+            var(--lines-color) 350px, var(--lines-color) 351px,
+            transparent 351px, transparent 430px,
+            var(--lines-color) 430px, var(--lines-color) 431px
+    ),
+    linear-gradient(#358192, #080b0b);
+    /* Use flex to split in two halves */
     display: flex;
     flex-direction: row;
     /* Set font properties for the whole app */
-    font-family: "Lucida Console", sans-serif;
+    font-family: "Lucida Console", monospace;
     color: rgba(255, 255, 255, 0.9);
 }
 
@@ -184,7 +208,7 @@ input[type=button] {
     background-color: rgba(0, 0, 0, 0.1);
     border-color: #132c36;
     padding: 3px 5px 3px 5px;
-    font-family: "Lucida Console", sans-serif;
+    font-family: "Lucida Console", monospace;
     font-size: large;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.9);
@@ -217,15 +241,17 @@ input[type=button]:hover {
     }
 }
 
-::-webkit-scrollbar {
-    width: 15px;
-}
+@media only screen and (min-width: 821px) {
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
 
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px #6293aa;
-}
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px #6293aa;
+    }
 
-::-webkit-scrollbar-thumb {
-    background: #137a72;
-    box-shadow: inset 0 0 3px white;
+    ::-webkit-scrollbar-thumb {
+        background: #137a72;
+        box-shadow: inset 0 0 3px white;
+    }
 }

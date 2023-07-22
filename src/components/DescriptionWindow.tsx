@@ -10,9 +10,7 @@ export const DescriptionWindow: React.FC = () => {
             id={"description-window"}
             content={<>
                 <h1>XANA Eye Generator</h1>
-                <p>
-                    A web interface to quickly create XANA-like logos<br/>
-                </p>
+                <p>A web interface to quickly create XANA-like logos</p>
                 <p>
                     Author&nbsp;:&#32;
                     <a target={"_blank"} href={"https://www.youtube.com/@lialslasher"}>
@@ -27,45 +25,43 @@ export const DescriptionWindow: React.FC = () => {
                 <p>
                     The aim of this interface is to prototype, to find inspiration by moving some sliders.<br/>
                     It's voluntarily short on functions so that the user is not overwhelmed and for the logos to stay
-                    in line with the model : concentric circles and branches.
+                    in line with the model&nbsp;: concentric circles and branches.
                 </p>
-                <p>
-                    You can edit the properties of several shapes&nbsp;:
-                    <ul>
-                        <li>
-                            One unique central dot
-                            <ul>
-                                <li>Radius&nbsp;: <em>the radius of the dot</em></li>
-                            </ul>
-                        </li>
-                        <br/>
+                <p>You can edit the properties of several shapes&nbsp;:</p>
+                <ul>
+                    <li>
+                        One unique central dot
+                        <ul>
+                            <li>Radius&nbsp;: <em>the radius of the dot</em></li>
+                        </ul>
+                    </li>
+                    <br/>
 
-                        <li>Multiple concentric circles
-                            <ul>
-                                <li>Radius&nbsp;: <em>the radius of the circle</em></li>
-                                <li>Width&nbsp;: <em>the width of the line</em></li>
-                            </ul>
-                        </li>
-                        <br/>
+                    <li>Multiple concentric circles
+                        <ul>
+                            <li>Radius&nbsp;: <em>the radius of the circle</em></li>
+                            <li>Width&nbsp;: <em>the width of the line</em></li>
+                        </ul>
+                    </li>
+                    <br/>
 
-                        <li>Multiple branches aligned with the center
-                            <ul>
-                                <li>Length&nbsp;: <em>the distance between the center and the end of the branch</em>
-                                </li>
-                                <li>Width&nbsp;: <em>the width of the line</em></li>
-                                <li>
-                                    Angle&nbsp;: <em>the angle of the branch. In degrees, clockwise, 0° is upwards.</em>
-                                </li>
-                                <li>Mirror&nbsp;: <em>whether to mirror the branch along the X axis</em></li>
-                                <li>Start&nbsp;: <em>whether to snap the start of the branch to a circle</em></li>
-                                <li>End&nbsp;: <em>whether to snap the end of the branch to a circle</em></li>
-                                <li>Rounded caps : <em>whether to use rounded or flat ends</em></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <li>Multiple branches aligned with the center
+                        <ul>
+                            <li>Length&nbsp;: <em>the distance between the center and the end of the branch</em>
+                            </li>
+                            <li>Width&nbsp;: <em>the width of the line</em></li>
+                            <li>
+                                Angle&nbsp;: <em>the angle of the branch. In degrees, clockwise, 0° is upwards.</em>
+                            </li>
+                            <li>Mirror&nbsp;: <em>whether to mirror the branch along the X axis</em></li>
+                            <li>Start&nbsp;: <em>whether to snap the start of the branch to a circle</em></li>
+                            <li>End&nbsp;: <em>whether to snap the end of the branch to a circle</em></li>
+                            <li>Rounded caps&nbsp;: <em>whether to use rounded or flat ends</em></li>
+                        </ul>
+                    </li>
+                </ul>
 
-                    There's no export function yet, just take a screenshot.
-                </p>
+                <p>There's no export function yet, just take a screenshot.</p>
             </>}
         />
     );

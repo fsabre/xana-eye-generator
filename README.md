@@ -51,3 +51,7 @@ To test this project on your own computer, run
   yarn
   yarn dev
 ```
+
+# TODO
+
+See [TODO.md](./TODO.md).

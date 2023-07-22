@@ -1,7 +1,8 @@
 import React from "react";
 
-import {Circle} from "../models/shapes.ts";
 import {Slider} from "./Slider.tsx";
+import {Circle} from "../models/shapes.ts";
+import {MAX_CIRCLE_RADIUS, MAX_CIRCLE_WIDTH, MIN_CIRCLE_RADIUS, MIN_CIRCLE_WIDTH} from "../util/constants.ts";
 
 interface ICircleConfigProps {
     label: string;
@@ -20,16 +21,16 @@ export const CircleConfig: React.FC<ICircleConfigProps> = (props) => {
             </div>
             <Slider
                 label={"Radius"}
-                min={1}
-                max={200}
+                min={MIN_CIRCLE_RADIUS}
+                max={MAX_CIRCLE_RADIUS}
                 value={circle.radius}
                 onChange={val => {
                     props.onCircleChange({...circle, radius: Number(val)});
                 }}/>
             <Slider
                 label={"Width"}
-                min={1}
-                max={100}
+                min={MIN_CIRCLE_WIDTH}
+                max={MAX_CIRCLE_WIDTH}
                 value={circle.width}
                 onChange={val => {
                     props.onCircleChange({...circle, width: Number(val)});
