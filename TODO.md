@@ -8,7 +8,6 @@ Project :
 
 Graphical aspect :
 
-- Choose another font, as I can do **anything** with "Lucida Console" **except** serve it in a web app...
 - Change the color of the logo on the canvas ?
 
 Responsiveness :

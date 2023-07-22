@@ -38,7 +38,7 @@ html, body, #root, #app {
     display: flex;
     flex-direction: row;
     /* Set font properties for the whole app */
-    font-family: "Lucida Console", sans-serif;
+    font-family: "Lucida Console", monospace;
     color: rgba(255, 255, 255, 0.9);
 }
 
@@ -208,7 +208,7 @@ input[type=button] {
     background-color: rgba(0, 0, 0, 0.1);
     border-color: #132c36;
     padding: 3px 5px 3px 5px;
-    font-family: "Lucida Console", sans-serif;
+    font-family: "Lucida Console", monospace;
     font-size: large;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.9);
