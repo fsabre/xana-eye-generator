@@ -4,11 +4,17 @@ Project :
 
 - Comment the code
 - Add an automatic changelog
+- Make the number version redirect to the changelog
 
 Graphical aspect :
 
-- Make one icon bar disappear if there's not enough room, to allow the page to be displayed properly on small phones
+- Choose another font, as I can do **anything** with "Lucida Console" **except** serve it in a web app...
 - Change the color of the logo on the canvas ?
+
+Responsiveness :
+
+- Make one icon bar disappear if there's not enough room, to allow the page to be displayed properly on small phones
+- Make the canvas always displayed at the top in phone resolution
 
 Configuration :
 
