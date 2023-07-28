@@ -9,7 +9,7 @@ interface IWindowProps {
 export const Window: React.FC<IWindowProps> = (props) => {
     return (
         <div id={props.id} className={"window"}>
-            <div className={"window-titlebar"}>
+            <div className={"window-bar"}>
                 <div className={"window-titlebar-start"}></div>
                 <div className={"window-titlebar-title"}>{props.title}</div>
                 <div className={"window-titlebar-end"}></div>
@@ -17,7 +17,7 @@ export const Window: React.FC<IWindowProps> = (props) => {
             <div className={"window-content"}>
                 {props.content}
             </div>
-            <div className={"window-titlebar"}>
+            <div className={"window-bar"}>
                 <div className={"window-footerbar-start"}></div>
                 <div className={"window-footerbar-title"}></div>
                 <div className={"window-footerbar-end"}></div>

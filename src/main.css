@@ -42,6 +42,7 @@ html, body, #root, #app {
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* HALVES */
 
 .half {
     box-sizing: border-box;
@@ -63,12 +64,16 @@ html, body, #root, #app {
     padding: 15px 10px 10px 0;
 }
 
+/* GENERAL WINDOWS */
+
 .window {
+    overflow: hidden; /* I don't want any scrollbar on the window itself, just on the content */
+    min-height: 150px; /* Don't shrink the window too hard */
     display: flex;
     flex-direction: column;
 }
 
-.window-titlebar {
+.window-bar {
     display: flex;
     flex-direction: row;
 }
@@ -77,12 +82,14 @@ html, body, #root, #app {
     background-image: url("/assets/window-titlebar-start.png");
     height: 30px;
     width: 179px;
+    flex-shrink: 1; /* Allow to shrink the icons */
 }
 
 .window-titlebar-title {
-    flex-grow: 1;
     background-image: url("/assets/window-titlebar-middle.png");
     padding: 8px 0 0 0;
+    flex-grow: 1; /* Cover the entire middle space */
+    flex-shrink: 0; /* The title is not allowed to shrink */
     font-family: gunship, sans-serif;
     text-align: center;
     color: white;
@@ -92,12 +99,13 @@ html, body, #root, #app {
     background-image: url("/assets/window-titlebar-end.png");
     height: 30px;
     width: 44px;
+    flex-shrink: 0; /* Not allowed to shrink */
 }
 
 .window-content {
-    overflow: auto;
+    overflow-y: auto;
     border: #6293aa solid;
-    border-width: 0 5px 0 5px;
+    border-width: 0 5px 0 5px; /* Add the border only on left and right sides */
     padding: 10px;
     background: #1b556a;
 }
@@ -109,8 +117,8 @@ html, body, #root, #app {
 }
 
 .window-footerbar-title {
-    flex-grow: 1;
     background-image: url("/assets/window-footerbar-middle.png");
+    flex-grow: 1; /* Cover the entire middle space */
 }
 
 .window-footerbar-end {
@@ -119,22 +127,43 @@ html, body, #root, #app {
     width: 40px;
 }
 
+/* SPECIFIC WINDOWS */
+
 #description-window {
-    overflow: auto;
-    margin: 0 10px 0 40px;
+    margin: 0 10px 0 40px; /* The window is a bit of an offset, so that's not perfectly centered */
+}
+
+#canvas-window {
+    min-height: 45vh;
+    width: min-content;
+}
+
+#canvas-window .window-content {
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the canvas */
 }
 
 #config-window {
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
 
-#eye-canvas {
-    height: 300px;
-    width: 300px;
+/* CANVAS */
+
+#eye-canvas-container {
+    aspect-ratio: 1/1;
 }
+
+#eye-canvas {
+    height: 100%;
+    width: 100%;
+}
+
+/* CONFIGURATION ELEMENTS */
 
 .config-actionbar {
     display: flex;
@@ -175,9 +204,12 @@ html, body, #root, #app {
 }
 
 .config-shape-control select, .config-shape-control select:focus {
+    margin-bottom: 1px;
     background-color: #137a72;
     border-color: #132c36;
 }
+
+/* TEXTS */
 
 h1 {
     font-family: gunship, sans-serif;
@@ -215,31 +247,54 @@ input[type=button] {
 }
 
 input[type=button]:hover {
-    background-color: #137a72;;
+    background-color: #137a72;
 }
+
+/* MOBILE SCREEN FORMAT */
 
 @media only screen and (max-width: 820px) {
     #app {
-        overflow: auto;
+        overflow-y: auto;
         flex-direction: column;
     }
 
     .half {
-        height: auto;
+        height: auto; /* Cancel the 100% height */
     }
 
-    #description-window {
-        margin: 0;
+    #first-half {
+        padding: 5px;
     }
 
     #second-half {
-        padding: 0 10px 10px 10px;
+        padding: 0 5px 305px 5px; /* Let room underneath for the canvas window */
+    }
+
+    .window {
+        width: 100%; /* Force the windows to shrink horizontally */
+    }
+
+    #description-window {
+        margin: 0; /* Cancel the margins made to have the window offset */
+    }
+
+    #canvas-window {
+        position: absolute; /* Fix the canvas window at the bottom of the screen */
+        min-height: auto; /* Cancel the previous min-height */
+        height: 300px;
+        bottom: 0;
+        right: auto;
     }
 
     #config-window {
         height: auto;
     }
+
+    #eye-canvas {
+    }
 }
+
+/* SCROLLBARS */
 
 @media only screen and (min-width: 821px) {
     ::-webkit-scrollbar {
