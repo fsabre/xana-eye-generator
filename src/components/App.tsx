@@ -32,7 +32,7 @@ function App() {
     const generate = React.useCallback(() => {
         console.log("Generating...");
         if (container_ref.current === null) {
-            container_ref.current = document.getElementById("canvas-window");
+            container_ref.current = document.querySelector("#canvas-window .window-content");
             if (container_ref.current === null) throw Error("Missing canvas container");
         }
         if (canvas_ref.current === null) {
@@ -111,7 +111,9 @@ function App() {
                     title={"Canvas"}
                     id={"canvas-window"}
                     content={
-                        <canvas id={"eye-canvas"}></canvas>
+                        <div id={"eye-canvas-container"}>
+                            <canvas id={"eye-canvas"}></canvas>
+                        </div>
                     }
                 />
             </div>

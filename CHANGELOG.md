@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/fsabre/xana-eye-generator/compare/0.3.0...0.4.0) (2023-07-30)
+
+
+### Features
+
+* Improve the web display and responsiveness ([0fc501f](https://github.com/fsabre/xana-eye-generator/commit/0fc501f0d8f22448bcc8ab29e7ce9e4ab413acb5))
+* Make the version number a link that redirects to the changelog ([e3fb530](https://github.com/fsabre/xana-eye-generator/commit/e3fb530f1459bf340871d5163b856d6acd07b06c))
+
 ## [0.3.0](https://github.com/fsabre/xana-eye-generator/compare/0.2.0...0.3.0) (2023-07-22)
 
 
