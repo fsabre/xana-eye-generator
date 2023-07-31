@@ -3,7 +3,6 @@
 Project :
 
 - Comment the code
-- Add example images in the `README.md`
 
 Graphical aspect :
 
