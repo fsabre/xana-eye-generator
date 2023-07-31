@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/fsabre/xana-eye-generator/compare/0.4.0...1.0.0) (2023-07-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* End the beta phase !
+
+### Features
+
+* Add the buttons descriptions in the app and in README.md ([1d2ec02](https://github.com/fsabre/xana-eye-generator/commit/1d2ec021bb19de7eb86d7eef952428585bd0ed5e))
+* End the beta phase ! ([8107ac6](https://github.com/fsabre/xana-eye-generator/commit/8107ac608be0ebe77b6067475747e61c241c28fb))
+
 ## [0.4.0](https://github.com/fsabre/xana-eye-generator/compare/0.3.0...0.4.0) (2023-07-30)
 
 
