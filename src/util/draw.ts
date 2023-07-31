@@ -2,6 +2,7 @@ import {Branch, Circle, Dot} from "../models/shapes.ts";
 
 const MAIN_COLOR = "#FF0000";
 
+// Draw the logo on the context `ctx`, of size (`width`; `height`)
 export function drawEye(ctx: CanvasRenderingContext2D, width: number, height: number, dot: Dot, circles: Circle[], branches: Branch[]): void {
     ctx.clearRect(0, 0, width, height);
     const centerX = width / 2;
@@ -11,6 +12,7 @@ export function drawEye(ctx: CanvasRenderingContext2D, width: number, height: nu
     branches.forEach(branch => drawBranch(ctx, branch, centerX, centerY, circles));
 }
 
+// Draw the central `dot`, centered on (`x`, `y`)
 function drawDot(ctx: CanvasRenderingContext2D, dot: Dot, x: number, y: number): void {
     ctx.beginPath();
     ctx.arc(x, y, dot.radius, 0, 2 * Math.PI);
@@ -18,6 +20,7 @@ function drawDot(ctx: CanvasRenderingContext2D, dot: Dot, x: number, y: number):
     ctx.fill();
 }
 
+// Draw one `circle`, centered on (`x`, `y`)
 function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y: number): void {
     ctx.beginPath();
     ctx.arc(x, y, circle.radius, 0, 2 * Math.PI);
@@ -26,6 +29,7 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y:
     ctx.stroke();
 }
 
+// Draw one `branch`, centered on (`x`, `y`). `circles` are provided so that branches can snap on them.
 function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number, circles: Circle[]): void {
     const angles = [branch.angle];
     if (branch.mirror) {

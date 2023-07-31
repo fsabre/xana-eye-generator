@@ -11,6 +11,7 @@ interface ICircleConfigProps {
     onDelete: () => void;
 }
 
+// A component to edit the properties of a circle
 export const CircleConfig: React.FC<ICircleConfigProps> = (props) => {
     const circle = props.circle;
     return (

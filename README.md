@@ -14,7 +14,22 @@ Try it on [fsabre.github.io/xana-eye-generator](https://fsabre.github.io/xana-ey
 
 ## Screenshots
 
-*# TODO Add logo examples here*
+The startup interface :
+
+<img src="./img/default-interface.png" alt="Default interface"/>
+
+The interface and a modified XANA eye :
+
+<img src="./img/modified-xana-eye.png" alt="Modified XANA eye"/>
+
+Some examples of created logos :
+
+<div style="margin-top: 10px; display: flex; flex-direction: row; justify-content: center; gap: 10px; flex-wrap: wrap">
+<img src="./img/example1-cropped.png" alt="Custom logo example n°1"/>
+<img src="./img/example2-cropped.png" alt="Custom logo example n°2"/>
+<img src="./img/example3-cropped.png" alt="Custom logo example n°3"/>
+<img src="./img/example4-cropped.png" alt="Custom logo example n°4"/>
+</div>
 
 ## Usage
 
@@ -38,6 +53,10 @@ You can edit the properties of several shapes :
     + Start : whether to snap the start of the branch to a circle
     + End : whether to snap the end of the branch to a circle
     + Rounded caps : whether to use rounded or flat ends
+
+Click the `RESET` button to restore the default logo.
+
+Click the `CLEAR` button to clear the canvas.
 
 There's no export function yet, just take a screenshot.
 

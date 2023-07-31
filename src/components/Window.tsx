@@ -6,6 +6,7 @@ interface IWindowProps {
     content: React.ReactNode;
 }
 
+// A component to form pretty windows with bars and borders
 export const Window: React.FC<IWindowProps> = (props) => {
     return (
         <div id={props.id} className={"window"}>

@@ -1,10 +1,5 @@
 # TODO
 
-Project :
-
-- Comment the code
-- Add example images in the `README.md`
-
 Graphical aspect :
 
 - Change the color of the logo on the canvas ?

@@ -12,6 +12,7 @@ interface IDropdownProps {
     onChange: (val: number) => void;
 }
 
+// A component to have a custom dropdown for the whole app
 export const Dropdown: React.FC<IDropdownProps> = (props) => {
     return (
         <div className={"config-shape-control"}>

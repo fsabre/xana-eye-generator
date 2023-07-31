@@ -20,6 +20,7 @@ interface IBranchConfigProps {
     circles: Circle[];
 }
 
+// A component to edit the properties of a branch
 export const BranchConfig: React.FC<IBranchConfigProps> = (props) => {
     const branch = props.branch;
     const start_options: IOption[] = [
