@@ -54,6 +54,10 @@ You can edit the properties of several shapes :
     + End : whether to snap the end of the branch to a circle
     + Rounded caps : whether to use rounded or flat ends
 
+Click the `RESET` button to restore the default logo.
+
+Click the `CLEAR` button to clear the canvas.
+
 There's no export function yet, just take a screenshot.
 
 ## Run Locally

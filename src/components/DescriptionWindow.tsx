@@ -64,6 +64,8 @@ export const DescriptionWindow: React.FC = () => {
                     </li>
                 </ul>
 
+                <p>Click the <em>RESET</em> button to restore the default logo.</p>
+                <p>Click the <em>CLEAR</em> button to clear the canvas.</p>
                 <p>There's no export function yet, just take a screenshot.</p>
             </>}
         />
