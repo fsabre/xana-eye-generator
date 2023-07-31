@@ -9,6 +9,7 @@ interface IDotConfigProps {
     onDotChange: (dot: Dot) => void;
 }
 
+// A component to edit the properties of the dot
 export const DotConfig: React.FC<IDotConfigProps> = (props) => {
     const dot = props.dot;
     return (

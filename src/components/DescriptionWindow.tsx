@@ -3,6 +3,7 @@ import React from "react";
 import {Window} from "./Window.tsx";
 import {getVersion} from "../util/version.ts";
 
+// A component for the long window explaining the app
 export const DescriptionWindow: React.FC = () => {
     return (
         <Window

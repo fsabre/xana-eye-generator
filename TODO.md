@@ -1,9 +1,5 @@
 # TODO
 
-Project :
-
-- Comment the code
-
 Graphical aspect :
 
 - Change the color of the logo on the canvas ?

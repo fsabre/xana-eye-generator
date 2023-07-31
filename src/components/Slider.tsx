@@ -15,6 +15,7 @@ const DEFAULT_PROPS: Partial<ISliderProps> = {
     max: 100,
 };
 
+// A component to have a custom slider for the whole app
 export const Slider: React.FC<ISliderProps> = (props) => {
     props = {...DEFAULT_PROPS, ...props};
     return (
