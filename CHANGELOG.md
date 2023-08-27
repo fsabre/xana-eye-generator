@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/fsabre/xana-eye-generator/compare/1.0.0...1.1.0) (2023-08-27)
+
+
+### Features
+
+* Add a button to export the logo as SVG ([5e6381f](https://github.com/fsabre/xana-eye-generator/commit/5e6381fa6e70d1e9569c9ceeb492cfdc4a7727b5))
+
 ## [1.0.0](https://github.com/fsabre/xana-eye-generator/compare/0.4.0...1.0.0) (2023-07-31)
 
 

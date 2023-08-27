@@ -8,6 +8,7 @@ import {Window} from "./Window.tsx";
 import {Branch, Circle, Dot} from "../models/shapes.ts";
 import {drawEye} from "../util/draw.ts";
 import {createBranch, createCircle} from "../util/findroom.ts";
+import {generateSVG} from "../util/export.ts";
 
 // Shapes for the default logo
 const XANA_EYE_DOT: Dot = {radius: 10};
@@ -67,6 +68,18 @@ function App() {
         setDot({"radius": 0});
         setCircles([]);
         setBranches([]);
+    }
+
+    // Export the logo as SVG and download the file
+    function onExport(): void {
+        const blob = new Blob([generateSVG(dot, circles, branches)], {type: "image/svg+xml"});
+        const blobURL = URL.createObjectURL(blob);
+        const linkElement = document.createElement("a")
+        linkElement.href = blobURL;
+        linkElement.download = "logo.svg"; // Give a file name on the remote computer
+        linkElement.style.display = "none"; // Make the link invisible
+        document.body.append(linkElement);
+        linkElement.click();
     }
 
     function onAddCircle(): void {
@@ -135,6 +148,7 @@ function App() {
                             <div className={"config-actionbar"}>
                                 <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
                                 <input type={"button"} value={"Clear"} onClick={onClear}/>
+                                <input type={"button"} value={"Export"} onClick={onExport}/>
                             </div>
                             {/* Then, for each shape type, a section constituted of a header and a config component */}
                             <div className={"config-section"}>
