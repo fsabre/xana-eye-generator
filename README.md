@@ -58,7 +58,7 @@ Click the `RESET` button to restore the default logo.
 
 Click the `CLEAR` button to clear the canvas.
 
-There's no export function yet, just take a screenshot.
+Click the `EXPORT` button to export your logo as SVG.
 
 ## Run Locally
 

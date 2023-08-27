@@ -29,8 +29,11 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle, x: number, y:
     ctx.stroke();
 }
 
-// Draw one `branch`, centered on (`x`, `y`). `circles` are provided so that branches can snap on them.
-function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number, circles: Circle[]): void {
+type Line = [[number, number], [number, number]];
+
+// Calculate the lines to draw for one branch, centered on (x, y)
+export function computeBranchLines(branch: Branch, x: number, y: number, circles: Circle[]): Line[] {
+    const lines: Line[] = [];
     const angles = [branch.angle];
     if (branch.mirror) {
         // Push the reflected angle in case of mirroring
@@ -39,15 +42,12 @@ function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y:
     for (const angle of angles) {
         // Convert the angle from degrees to radians. Angle is calculated clockwise, 0° is midnight.
         const radians_angle = (angle - 90) * Math.PI / 180;
-        ctx.beginPath();
-        if (branch.start === -1) {
-            ctx.moveTo(x, y);
-        } else {
-            // Bind the branch to a circle
+        let startX = x, startY = y;
+        if (branch.start !== -1) {
+            // Bind the start of the branch to a circle
             const circle = circles[branch.start];
-            const startX = x + circle.radius * Math.cos(radians_angle);
-            const startY = y + circle.radius * Math.sin(radians_angle);
-            ctx.moveTo(startX, startY);
+            startX = x + circle.radius * Math.cos(radians_angle);
+            startY = y + circle.radius * Math.sin(radians_angle);
         }
         let destX = 0, destY = 0;
         if (branch.end === -1) {
@@ -58,6 +58,18 @@ function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y:
             destX = x + circle.radius * Math.cos(radians_angle);
             destY = y + circle.radius * Math.sin(radians_angle);
         }
+        lines.push([[startX, startY], [destX, destY]]);
+    }
+    return lines;
+}
+
+// Draw one `branch`, centered on (`x`, `y`). `circles` are provided so that branches can snap on them.
+function drawBranch(ctx: CanvasRenderingContext2D, branch: Branch, x: number, y: number, circles: Circle[]): void {
+    const lines = computeBranchLines(branch, x, y, circles);
+    for (const line of lines) {
+        const [[startX, startY], [destX, destY]] = line;
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
         ctx.lineTo(destX, destY);
         ctx.strokeStyle = MAIN_COLOR;
         ctx.lineWidth = branch.width;
