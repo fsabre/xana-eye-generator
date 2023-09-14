@@ -203,6 +203,11 @@ html, body, #root, #app {
     accent-color: #137a72;
 }
 
+.config-shape-control input[type=range] {
+    width: 100%;
+    max-width: 500px;
+}
+
 .config-shape-control input[type=text] {
     width: 40px;
     background: transparent;
