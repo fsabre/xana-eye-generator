@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
+
+import {GlobalContext} from "./App.tsx";
 
 interface IWindowProps {
     title: string;
@@ -8,12 +10,13 @@ interface IWindowProps {
 
 // A component to form pretty windows with bars and borders
 export const Window: React.FC<IWindowProps> = (props) => {
+    const {onWindowsQuitClick} = useContext(GlobalContext);
     return (
         <div id={props.id} className={"window"}>
             <div className={"window-bar"}>
                 <div className={"window-titlebar-start"}></div>
                 <div className={"window-titlebar-title"}>{props.title}</div>
-                <div className={"window-titlebar-end"}></div>
+                <div className={"window-titlebar-end"} onClick={onWindowsQuitClick}></div>
             </div>
             <div className={"window-content"}>
                 {props.content}

@@ -203,6 +203,20 @@ html, body, #root, #app {
     accent-color: #137a72;
 }
 
+.config-shape-control input[type=range] {
+    width: 100%;
+    max-width: 500px;
+}
+
+.config-shape-control input[type=text] {
+    width: 40px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-family: "Lucida Console", monospace;
+    font-size: medium;
+}
+
 .config-shape-control select, .config-shape-control select:focus {
     margin-bottom: 1px;
     background-color: #137a72;
