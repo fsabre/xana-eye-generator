@@ -10,6 +10,12 @@ import {drawEye} from "../util/draw.ts";
 import {createBranch, createCircle} from "../util/findroom.ts";
 import {generateSVG} from "../util/export.ts";
 
+export const GlobalContext = React.createContext({
+    onWindowsQuitClick: () => {
+        // Called when the "quit" button of a window is clicked
+    },
+});
+
 // Shapes for the default logo
 const XANA_EYE_DOT: Dot = {radius: 10};
 const XANA_EYE_CIRCLES: Circle[] = [
@@ -32,6 +38,16 @@ function App() {
     const container_ref = React.useRef<HTMLElement | null>(null);
     const canvas_ref = React.useRef<HTMLCanvasElement | null>(null);
     const ctx_ref = React.useRef<CanvasRenderingContext2D | null>(null);
+
+    const [windowsQuitClickCount, setWindowsQuitClickCount] = React.useState(0);
+
+    function onWindowsQuitClick() {
+        // Friendly and funny reminder
+        setWindowsQuitClickCount(windowsQuitClickCount + 1);
+        if (windowsQuitClickCount + 1 >= 3) {
+            alert("Sorry to disappoint, but this is just an interface, not a full-fledged window manager.");
+        }
+    }
 
     const generate = React.useCallback(() => {
         //console.log("Generating...");
@@ -125,82 +141,84 @@ function App() {
     }, [generate, dot, circles, branches]);
 
     return (
-        <div id={"app"}>
-            <div id={"first-half"} className={"half"}>
-                <DescriptionWindow/>
-                <Window
-                    title={"Canvas"}
-                    id={"canvas-window"}
-                    content={
-                        <div id={"eye-canvas-container"}>
-                            <canvas id={"eye-canvas"}></canvas>
-                        </div>
-                    }
-                />
+        <GlobalContext.Provider value={{onWindowsQuitClick}}>
+            <div id={"app"}>
+                <div id={"first-half"} className={"half"}>
+                    <DescriptionWindow/>
+                    <Window
+                        title={"Canvas"}
+                        id={"canvas-window"}
+                        content={
+                            <div id={"eye-canvas-container"}>
+                                <canvas id={"eye-canvas"}></canvas>
+                            </div>
+                        }
+                    />
+                </div>
+                <div id={"second-half"} className={"half"}>
+                    <Window
+                        title={"Configuration"}
+                        id={"config-window"}
+                        content={
+                            <div>
+                                {/* First, add an action bar */}
+                                <div className={"config-actionbar"}>
+                                    <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
+                                    <input type={"button"} value={"Clear"} onClick={onClear}/>
+                                    <input type={"button"} value={"Export"} onClick={onExport}/>
+                                </div>
+                                {/* Then, for each shape type, a section constituted of a header and a config component */}
+                                <div className={"config-section"}>
+                                    <div className={"config-section-header"}>
+                                        <h2>Dot</h2>
+                                    </div>
+                                    <DotConfig dot={dot} onDotChange={setDot}/>
+                                </div>
+                                <div className={"config-section"}>
+                                    <div className={"config-section-header"}>
+                                        <h2>Circles</h2>
+                                        <input type={"button"} value={"+"} onClick={onAddCircle}/>
+                                    </div>
+                                    {circles.map((circle, idx) => (
+                                        <CircleConfig
+                                            key={idx}
+                                            label={String(idx + 1)}
+                                            circle={circle}
+                                            onCircleChange={(circle: Circle) => {
+                                                const newCircles = [...circles];
+                                                newCircles[idx] = circle;
+                                                setCircles(newCircles);
+                                            }}
+                                            onDelete={() => onCircleRemove(idx)}
+                                        />
+                                    ))}
+                                </div>
+                                <div className={"config-section"}>
+                                    <div className={"config-section-header"}>
+                                        <h2>Branches</h2>
+                                        <input type={"button"} value={"+"} onClick={onAddBranch}/>
+                                    </div>
+                                    {branches.map((branch, idx) => (
+                                        <BranchConfig
+                                            key={idx}
+                                            label={String(idx + 1)}
+                                            branch={branch}
+                                            onBranchChange={(branch: Branch) => {
+                                                const newBranches = [...branches];
+                                                newBranches[idx] = branch;
+                                                setBranches(newBranches);
+                                            }}
+                                            onDelete={() => onBranchRemove(idx)}
+                                            circles={circles}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        }
+                    />
+                </div>
             </div>
-            <div id={"second-half"} className={"half"}>
-                <Window
-                    title={"Configuration"}
-                    id={"config-window"}
-                    content={
-                        <div>
-                            {/* First, add an action bar */}
-                            <div className={"config-actionbar"}>
-                                <input type={"button"} value={"Reset"} onClick={onEyeReset}/>
-                                <input type={"button"} value={"Clear"} onClick={onClear}/>
-                                <input type={"button"} value={"Export"} onClick={onExport}/>
-                            </div>
-                            {/* Then, for each shape type, a section constituted of a header and a config component */}
-                            <div className={"config-section"}>
-                                <div className={"config-section-header"}>
-                                    <h2>Dot</h2>
-                                </div>
-                                <DotConfig dot={dot} onDotChange={setDot}/>
-                            </div>
-                            <div className={"config-section"}>
-                                <div className={"config-section-header"}>
-                                    <h2>Circles</h2>
-                                    <input type={"button"} value={"+"} onClick={onAddCircle}/>
-                                </div>
-                                {circles.map((circle, idx) => (
-                                    <CircleConfig
-                                        key={idx}
-                                        label={String(idx + 1)}
-                                        circle={circle}
-                                        onCircleChange={(circle: Circle) => {
-                                            const newCircles = [...circles];
-                                            newCircles[idx] = circle;
-                                            setCircles(newCircles);
-                                        }}
-                                        onDelete={() => onCircleRemove(idx)}
-                                    />
-                                ))}
-                            </div>
-                            <div className={"config-section"}>
-                                <div className={"config-section-header"}>
-                                    <h2>Branches</h2>
-                                    <input type={"button"} value={"+"} onClick={onAddBranch}/>
-                                </div>
-                                {branches.map((branch, idx) => (
-                                    <BranchConfig
-                                        key={idx}
-                                        label={String(idx + 1)}
-                                        branch={branch}
-                                        onBranchChange={(branch: Branch) => {
-                                            const newBranches = [...branches];
-                                            newBranches[idx] = branch;
-                                            setBranches(newBranches);
-                                        }}
-                                        onDelete={() => onBranchRemove(idx)}
-                                        circles={circles}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    }
-                />
-            </div>
-        </div>
+        </GlobalContext.Provider>
     );
 }
 
