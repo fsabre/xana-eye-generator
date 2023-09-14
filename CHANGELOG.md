@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/fsabre/xana-eye-generator/compare/1.1.0...1.2.0) (2023-09-14)
+
+
+### Features
+
+* Allow to edit slider values as text ([4495bc4](https://github.com/fsabre/xana-eye-generator/commit/4495bc468e9125c117ceac497c56760c934bd97b))
+* Display a little message if somebody tries hard to close a window ([34690e1](https://github.com/fsabre/xana-eye-generator/commit/34690e150ac44cb3a004689c55fad5a7da87d0b5))
+* Enlarge the sliders if space is available ([98250c5](https://github.com/fsabre/xana-eye-generator/commit/98250c5ed7859aaa9f166ef52adb93166b37cba5))
+
 ## [1.1.0](https://github.com/fsabre/xana-eye-generator/compare/1.0.0...1.1.0) (2023-08-27)
 
 
